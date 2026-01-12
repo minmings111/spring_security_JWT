@@ -14,10 +14,18 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import lombok.RequiredArgsConstructor;
+import me.minimings.backend.global.util.JwtTokenProvider;
+
+
 // JWT
 @Configuration // setting file
 @EnableWebSecurity // turn on springsecurity
+@RequiredArgsConstructor // constructor injection
 public class SecurityConfig {
+
+    // JwtTokenProvider
+    private final JwtTokenProvider jwtTokenProvider;
 
     // Password encryption
     @Bean
