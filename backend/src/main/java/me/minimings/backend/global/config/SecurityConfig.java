@@ -10,11 +10,13 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import lombok.RequiredArgsConstructor;
+import me.minimings.backend.global.filter.JwtAuthenticationFilter;
 import me.minimings.backend.global.util.JwtTokenProvider;
 
 
@@ -37,11 +39,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            // It is not necessary because of JWT
+            // It is not necessary because we used JWT
             .csrf(csrf -> csrf.disable())
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .sessionManagement(session -> session
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
+            .httpBasic(httpBasic -> httpBasic.disable())
+            .formLogin(formLogin -> formLogin.disable())
             
             // Set addresses that can be accessed without authentication
             .authorizeHttpRequests(auth -> auth
@@ -49,7 +54,11 @@ public class SecurityConfig {
                                 "/api/user/login"
                             ).permitAll()
                 .anyRequest().authenticated() // other feature requires login
-            );
+            )
+            
+            // Add JWT authentication filter
+            .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), 
+                       UsernamePasswordAuthenticationFilter.class);
         
         return http.build();
     }
@@ -66,6 +75,8 @@ public class SecurityConfig {
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
         // Allow credentials(cookies, etc.)
         configuration.setAllowCredentials(true);
+        // Expose Authorization header
+        configuration.setExposedHeaders(Arrays.asList("Authorization"));
 
         // Apply CORS settings to all routes
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

@@ -1,8 +1,6 @@
 package me.minimings.backend.global.util;
 
-import java.nio.charset.StandardCharsets;
 import java.security.Key;
-import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
