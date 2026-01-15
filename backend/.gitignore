@@ -35,3 +35,9 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# yaml
+application.yml
+
+# for study
+docs/study/
