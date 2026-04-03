@@ -22,15 +22,15 @@ Spring Boot와 JWT를 활용한 안전한 사용자 인증 시스템입니다.
 
 **## ✨ 주요 기능**
 
-**### ✅ 구현 완료**
+**### ✅ 현재 구현 상태**
 
-**- JWT 토큰 기반 인증 시스템**
+**- JWT 인증 인프라 구축**
 
-**- Spring Security 통합**
+**- Spring Security 기본 통합**
 
 **- 데이터베이스 스키마 설계 (소셜 로그인 대비)**
 
-**- 역할 기반 접근 제어 (RBAC)**
+**- 인증이 필요한 경로에 대한 기본 접근 제어 설정**
 
 **### 🚧 개발 예정**
 
@@ -46,9 +46,9 @@ Spring Boot와 JWT를 활용한 안전한 사용자 인증 시스템입니다.
 
 \***\*Backend\*\***
 
-**- Java 17**
+**- Java 21**
 
-**- Spring Boot 3.x**
+**- Spring Boot 4.0.1**
 
 **- Spring Security + JWT**
 
@@ -65,6 +65,8 @@ Spring Boot와 JWT를 활용한 안전한 사용자 인증 시스템입니다.
 **## 📚 상세 문서**
 
 **- [백엔드 문서](./backend/README.md) - Spring Boot 백엔드 상세 가이드**
+
+**- [인증 흐름 문서](./backend/docs/architecture/auth-flow.md) - 현재 프로젝트 기준 JWT 인증 흐름 정리**
 
 **## 📝 라이센스**
 
