@@ -22,10 +22,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     
     private final JwtTokenProvider jwtTokenProvider;
 
+    // exclude URL setting
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
         String[] excludePath = {"/api/user/signup", "/api/user/login"};
-        // exclude URL setting
         String path = request.getRequestURI();
         return Arrays.asList(excludePath).contains(path);
     }
