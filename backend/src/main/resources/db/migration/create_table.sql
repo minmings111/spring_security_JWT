@@ -5,10 +5,10 @@ CREATE TABLE users (
     user_id VARCHAR(50) UNIQUE,
     user_pw VARCHAR(255), -- social user don't have passwords
     user_name VARCHAR(100) NOT NULL,
-    user_email VARCHAR(100) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
     
     -- about social login
-    login_type ENUM('LOCAL', 'GOOGLE', 'KAKAO') DEFAULT 'LOCAL',
+    login_type ENUM('local', 'google', 'kakao') DEFAULT 'local',
     social_id VARCHAR(255) UNIQUE, 
     
     -- infomation

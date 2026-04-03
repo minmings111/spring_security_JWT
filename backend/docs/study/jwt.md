@@ -1,6 +1,6 @@
 # JWT (JSON Web Token) 완벽 가이드
 
-> 이 문서는 JWT가 무엇이며, 어떻게 구성되고, 왜 현재 프로젝트에서 HS256 알고리즘을 사용하고 있는지, 그리고 지금 코드 기준으로 어떻게 구현되었는지를 설명합니다.
+> 이 문서는 JWT가 무엇이며, 어떻게 구성되고, 왜 HS256 알고리즘을 사용하는지, 그리고 우리 프로젝트에서 어떻게 구현되었는지를 상세히 설명합니다.
 
 ## 📚 목차
 1. [JWT란 무엇인가?](#1-jwt란-무엇인가)
@@ -514,8 +514,6 @@ RS256 적합:
 
 ## 5. 우리 프로젝트의 JWT 구현
 
-> 현재 프로젝트에 실제로 적용되는 인증 흐름은 `../architecture/auth-flow.md` 문서에서 별도로 정리합니다. 이 문서는 JWT 개념과 현재 코드에 들어간 구성 요소를 이해하는 데 초점을 둡니다.
-
 ### 5.1 전체 구조
 
 ```
@@ -547,7 +545,7 @@ application.yml (설정)
 ```yaml
 jwt:
   header: Authorization
-  # 현재 코드는 HS256을 사용하며, 시크릿은 Base64 인코딩된 문자열입니다.
+  # HS512는 최소 64bytes 필요, 아래는 Base64 인코딩된 시크릿
   secret: c2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQtc2lsdmVybmluZS10ZWNoLXNwcmluZy1ib290LWp3dC10dXRvcmlhbC1zZWNyZXQK
   # 토큰 유효 기간 (초)
   token-validity-in-seconds: 86400  # 24시간
