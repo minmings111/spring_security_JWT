@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: backend
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/your_database?serverTimezone=Asia/Seoul&characterEncoding=utf8
+    username: your_db_username
+    password: your_db_password
+
+mybatis:
+  mapper-locations: classpath:mappers/**/*.xml
+  type-aliases-package: me.minimings.backend.model
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100
+    default-executor-type: REUSE
+
+jwt:
+  header: Authorization
+  secret: your_base64_encoded_jwt_secret
+  token-validity-in-seconds: 86400
